@@ -1,15 +1,15 @@
 
 <template>
 	<ion-buttons class="reactions">
-		<ion-button @click="likeFn">
-			<ion-icon :icon="likePost ? thumbsUp : thumbsUpOutline"></ion-icon> Like
-		</ion-button>
-		<ion-button>
-			<ion-icon :icon="chatboxOutline"></ion-icon> Comment
-		</ion-button>
-		<ion-button>
-			<ion-icon :icon="arrowRedoOutline"></ion-icon> Share
-		</ion-button>
+    <ion-button @click="likeFn">
+      <ion-icon :icon="likePost ? thumbsUp : thumbsUpOutline"></ion-icon> {{ $t('reactions.like') }}
+    </ion-button>
+    <ion-button>
+      <ion-icon :icon="chatboxOutline"></ion-icon> {{ $t('reactions.comment') }}
+    </ion-button>
+    <ion-button>
+      <ion-icon :icon="arrowRedoOutline"></ion-icon> {{ $t('reactions.share') }}
+    </ion-button>
 	</ion-buttons>
 </template>
 

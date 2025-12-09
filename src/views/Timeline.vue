@@ -3,15 +3,16 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <div class="logo">facebook</div>
+        <div class="logo">{{ $t('brand.logo') }}</div>
 
         <ion-buttons slot="end">
           <ion-button>
             <ion-icon :icon="search"></ion-icon>
           </ion-button>
-          <ion-button>
+          <ion-button @click.prevent="openChat">
             <ion-icon :icon="chatbubbleOutline"></ion-icon>
           </ion-button>
+          <AuthButton />
         </ion-buttons>
       </ion-toolbar>
       <div class="menu">
@@ -25,6 +26,7 @@
       <StatusInput />
       <!-- <Stories :data="stories" /> -->
       <Posts :data="posts" />
+      <ChatModal ref="chatModal" />
     </ion-content>
   </ion-page>
 </template>
@@ -33,6 +35,8 @@
 // import Stories from "../components/Stories.vue";
 import StatusInput from "../components/StatusInput.vue";
 import Posts from "../components/Posts.vue";
+import AuthButton from "../components/AuthButton.vue";
+import ChatModal from "../components/ChatModal.vue";
 
 import {
   IonPage,
@@ -68,6 +72,8 @@ export default {
     // Stories,
     StatusInput,
     Posts,
+    AuthButton,
+    ChatModal,
   },
   setup() {
     const menu = [
@@ -90,6 +96,11 @@ export default {
     },
     stories() {
       return this.$store.getters.stories;
+    },
+  },
+  methods: {
+    openChat() {
+      this.$refs.chatModal.open();
     },
   },
 };

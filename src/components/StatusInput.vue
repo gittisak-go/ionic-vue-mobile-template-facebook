@@ -5,18 +5,18 @@
         <img src="/assets/images/snoop.png" width="100%" />
       </ion-col>
       <ion-col>
-        <input placeholder="What's on your mind?" />
+        <input :placeholder="$t('status.placeholder')" />
       </ion-col>
     </ion-row>
     <ion-row class="status-shortcuts">
       <ion-col>
-        <ion-icon :icon="videocamOutline"></ion-icon> <span>Live</span>
+        <ion-icon :icon="videocamOutline"></ion-icon> <span>{{ $t('status.live') }}</span>
       </ion-col>
       <ion-col>
-        <ion-icon :icon="images"></ion-icon> <span>Photo</span>
+        <ion-icon :icon="images"></ion-icon> <span>{{ $t('status.photo') }}</span>
       </ion-col>
       <ion-col>
-        <ion-icon :icon="videocam"></ion-icon> <span>Room</span>
+        <ion-icon :icon="videocam"></ion-icon> <span>{{ $t('status.room') }}</span>
       </ion-col>
     </ion-row>
   </ion-grid>

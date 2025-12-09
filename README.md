@@ -1,76 +1,142 @@
-## Ionic Vue Facebook Template
+## backcat
+
+เว็บแอปพลิเคชันมือถือสร้างด้วย `Ionic Vue` และ `Vue 3`.
 
 ![Netlify Status](https://api.netlify.com/api/v1/badges/fc2b8d51-2242-440c-8f6c-f283e77154c4/deploy-status)
 
-Facebook android dark mode inspired [Ionic Vue](https://ionicframework.com/vue) template.
+ตัวอย่างเดโม (ถ้ามีพรีวิว): https://ionic-vue-mobile-template-facebook.netlify.app
 
-[Demo](https://ionic-vue-mobile-template-facebook.netlify.app)
+## การติดตั้งโปรเจกต์
 
-## Project setup
+รันคำสั่งต่อไปนี้เพื่อดาวน์โหลด dependency:
 
-```
+```bash
 npm install
 ```
 
-### Run on the browser - development
+### รันบนเบราว์เซอร์ (โหมดพัฒนา)
 
-```
+เริ่มเซิร์ฟเวอร์พัฒนา (Vite):
+
+```bash
 npm run dev
 ```
 
-## Design
+ค่าเริ่มต้น Vite จะให้ URL ท้องถิ่น เช่น `http://localhost:5173/` — เปิด URL นั้นในเบราว์เซอร์เพื่อตรวจดูหน้าแรก
 
-![Screenshot|300x484, 70%](/design.jpg "Screenshot")
+## การออกแบบ (Design)
 
-## Native
+ภาพหน้าจอตัวอย่าง: `design.jpg` (ถ้ามี)  
 
-Using [Capacitor](https://capacitorjs.com/docs/getting-started) for native builds
+## เวอร์ชันแบบ Native (Capacitor)
 
-## Prepare native builds
+โปรเจกต์ใช้ [Capacitor](https://capacitorjs.com/docs/getting-started) สำหรับแพ็กแอปเป็น native
 
-### iOS testing and distribution
+### เตรียม native builds (สรุป)
 
-1. Download the latest Xcode
-2. `npm run build`
-3. `npx cap add ios`
-4. `npx cap copy`
-5. `npx cap open ios` Xcode takes a few seconds to index the files; keep an eye at the top of Xcode's window for progress.
+ตัวอย่างคำสั่งสำหรับ iOS:
 
-[Not compulsory] For sanity check click on the play button in the top left. This will prepare and run the app in a simulator, if all goes well you should be able to run the app and click around. If not, create an issue 🤷 and I will have a look.
+```bash
+npm run build
+npx cap add ios
+npx cap copy
+npx cap open ios
+```
 
-### Android testing and distribution
+สำหรับ Android ใช้คำสั่งแทน `ios` เป็น `android`:
 
-1. Download the latest Android Studio
-2. `npm run build`
-3. `npx cap add android`
-4. `npx cap copy`
-5. `npx cap open android` Android Studio takes a few seconds to index the files, keep an eye at the bottom of Android Studio for progress.
-6. Testing - When indexing is complete, look for a green play button. Click the play button and it will launch the app in an emulator ([See here to setup Emulator](https://developer.android.com/studio/run/managing-avds)) or on the phone, if a phone is connected via USB.
+```bash
+npm run build
+npx cap add android
+npx cap copy
+npx cap open android
+```
 
-## Official Docs
+หมายเหตุ: Xcode/Android Studio อาจใช้เวลาสักครู่ในการ index โครงการ
 
-- [Getting started](https://ionicframework.com/vue)
+## เอกสารอย่างเป็นทางการ
 
-## Resources
+- Getting started (Ionic Vue): https://ionicframework.com/vue
 
-- [Newsletter](https://mailchi.mp/b9133e120ccf/sqan8ggx22) - Signup to my Ionic Vue newsletter to get templates and other Ionic Vue updates in your inbox!
-- [YouTube Channel](https://www.youtube.com/channel/UC5jZ6srZuLwt3O3ZtuM1Dsg) - Subscribe to my YouTube channel.
-- [Ionic Vue Tempalates](https://tinyurl.com/y2gl39dk) - Free Ionic Vue Templates.
-- [Ionic Vue VSCode Snippets](https://marketplace.visualstudio.com/items?itemName=dlodeprojuicer.ionicvuesnippets) - This extension adds ionic-vue snippets. Quickly add ionic-vue component code by simply typing iv. The iv prefix will show a range of snippets to choose from.
+## แหล่งข้อมูล (Resources)
 
-## Affiliates
+- Newsletter: https://mailchi.mp/b9133e120ccf/sqan8ggx22
+- YouTube: https://www.youtube.com/channel/UC5jZ6srZuLwt3O3ZtuM1Dsg
+- Ionic Vue Templates: https://tinyurl.com/y2gl39dk
+- Ionic Vue VSCode Snippets (extension): https://marketplace.visualstudio.com/items?itemName=dlodeprojuicer.ionicvuesnippets
 
-I want to keep doing these templates for free for as long as possible. I have joined a few affiliate programs to help take care of the costs.
+## คำแนะนำสำหรับการพัฒนา (Quick tips)
 
-- [Pixeltrue](https://www.pixeltrue.com/?via=simo) - High-quality illustrations that will help you build breath-taking websites.
-- [Getrewardful](https://www.getrewardful.com/?via=simo) - Create your own affiliate program.
+- จุดบูตแอป: `src/main.js` — ลงทะเบียน `IonicVue`, `router`, `store` และ import ไฟล์ CSS ของ Ionic
+- หน้าเริ่มต้น: `src/views/Timeline.vue` (route `/`)
+- สตอร์ (seed data): `src/store/index.js` — แก้ `posts`/`stories` ที่นี่เพื่อเปลี่ยนเนื้อหา
+- สไตล์: `src/theme/variables.css` และการ import CSS ของ Ionic ต้องอยู่ใน `src/main.js`
 
-Alternatively, you can buy me a coffee <a href="https://www.buymeacoffee.com/simomafuxwana" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="120px" height="30px" style="height: 30px !important;width: 120px !important;" ></a>
+## ทดสอบ
 
-## Credits
+- Unit tests (Vitest):
 
-- [Tami Maiwashe](https://www.linkedin.com/in/tami-maiwashe-32824a19a/) - Documentation
+```bash
+npm run test:unit
+```
 
-## Contact
+- E2E tests (Cypress headless):
 
-- [@dlodeprojuicer](https://twitter.com/dlodeprojuicer) on Twitter
+```bash
+npm run test:e2e
+```
+
+## ข้อควรระวัง
+
+- โปรเจกต์ผสม `script setup` และ `export default` ใน SFC — ให้แก้ไฟล์ตามสไตล์ที่ไฟล์นั้นใช้
+- หากรันสคริปต์ใน PowerShell เจอปัญหาเรื่อง execution policy ให้รันโดยใช้ `cmd` หรือปรับ `ExecutionPolicy` ของ PowerShell
+- พบตัวอักษรเพี้ยน `5;` ที่ท้าย `src/router/index.js` — ควรลบเมื่อแก้ไฟล์นั้น
+
+## ผู้เขียน / เครดิต
+
+- โค้ดตัวอย่างและเอกสารต้นฉบับจากผู้เขียนเดิม
+
+## การตั้งค่า Google OAuth / Supabase (scaffold)
+
+- หากต้องการเปิดใช้งาน Google Sign-in จริง ให้สร้างไฟล์ `.env` ที่ตั้งค่าต่อไปนี้ (ดู `.env.example`):
+
+```bash
+VITE_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+VITE_SUPABASE_URL=https://<project>.supabase.co
+VITE_SUPABASE_ANON_KEY=<anon-key>
+```
+
+- การเปลี่ยนแปลงที่ผมเพิ่มไฟล์สเต็บไว้ให้:
+	- `src/services/googleAuth.js` — โหลด Google Identity SDK แบบไดนามิก และคืนค่า user object เมื่อสำเร็จ
+	- `src/services/supabaseStub.js` — stub สำหรับตรวจว่ามีค่า Supabase หรือไม่ (ยังไม่เชื่อมต่อจริง)
+
+- เมื่อตั้งค่า `VITE_GOOGLE_CLIENT_ID` อยู่ใน `.env` แล้ว รีสตาร์ท dev server เพื่อให้ค่า env โหลดใหม่
+
+## ปรับใช้บน Netlify
+
+ไฟล์ `netlify.toml` และ `public/_redirects` ถูกเพิ่มไว้แล้วในโปรเจกต์ เพื่อรองรับการ deploy แบบ Single Page App (SPA).
+
+ขั้นตอนสรุปการ deploy บน Netlify (วิธีง่ายที่สุด):
+
+1. Push โค้ดขึ้น GitHub (หรือ Git provider ที่ Netlify รองรับ).
+2. เข้าไปที่ https://app.netlify.com → สร้าง New site → เลือก "Import from Git" → เลือกรีโปของคุณ
+3. ตรวจสอบค่าการตั้งค่า build:
+	- Build command: `npm run build`
+	- Publish directory: `dist`
+4. ตั้งค่า Environment variables ใน Netlify site settings (หากต้องการ):
+	- `VITE_GOOGLE_CLIENT_ID` (ถ้าต้องการเปิด Google Sign-in จริง)
+	- `VITE_SUPABASE_URL` และ `VITE_SUPABASE_ANON_KEY` (เมื่อพร้อมเชื่อม Supabase)
+5. กด Deploy — Netlify จะรัน `npm install` และ `npm run build` ตามที่กำหนด และเผยแพร่ `dist` เป็น static site
+
+ทางเลือก: ใช้ Netlify CLI เพื่อตรวจสอบก่อน deploy จริงจากเครื่องของคุณ:
+
+```bash
+npm install -g netlify-cli
+npm run build
+netlify deploy --dir=dist --prod
+```
+
+หมายเหตุ:
+- หากคุณต้องการให้ผมสร้าง site บน Netlify, ทำการ deploy ครั้งแรก หรือเปิดให้ผมใช้ Netlify access token (แนะนำว่าปลอดภัยกว่าถ้าเจ้าของ repo ทำเชื่อมด้วยตัวเอง) ให้บอกผม — ผมสามารถช่วยขั้นตอนวิธีกรนและแนะนำการตั้งค่าได้
+
+

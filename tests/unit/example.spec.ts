@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils'
-import HomePage from '@/views/HomePage.vue'
+import Timeline from '../../src/views/Timeline.vue'
 import { describe, expect, test } from 'vitest'
 
-describe('HomePage.vue', () => {
-  test('renders home vue', () => {
-    const wrapper = mount(HomePage)
-    expect(wrapper.text()).toMatch('Ready to create an app?')
+describe('Timeline.vue', () => {
+  test('renders logo text', () => {
+    const wrapper = mount(Timeline, { global: { stubs: ['ion-icon', 'ion-button', 'ion-buttons', 'ion-header', 'ion-toolbar', 'ion-page', 'ion-content', 'ion-grid', 'ion-row', 'ion-col', 'ion-card', 'ion-card-header', 'ion-modal', 'ion-input', 'ion-list', 'ion-item', 'ion-label'] } })
+    expect(wrapper.html()).toMatch('แม้วง่วง')
   })
 })
