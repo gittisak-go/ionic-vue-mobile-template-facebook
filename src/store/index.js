@@ -4,6 +4,15 @@ const store = createStore({
   state: {
     posts: [
       {
+        name: "9huaw",
+        image: "assets/images/9huaw_Blueamy3_1.jpg",
+        pic: "assets/images/9huaw.jpg",
+        id: 5,
+        likes: 0,
+        timestamp: "เมื่อสักครู่",
+        description: "สวัสดีครับนาย",
+      },
+      {
         name: "Snoop Dogg",
         image: "assets/images/snoop-dogg-wine-01.jpeg",
         pic: "assets/images/snoop.png",
