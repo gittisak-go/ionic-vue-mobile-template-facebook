@@ -119,6 +119,9 @@ ion-header {
   padding: 10px 0 0 10px;
   font-weight: bolder;
   font-size: 26px;
+  display: inline-block;
+  white-space: nowrap;
+  letter-spacing: normal;
 }
 
 .menu {
