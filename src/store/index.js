@@ -18,16 +18,17 @@ const store = createStore({
         pic: "assets/images/snoop.png",
         id: 1,
         likes: 22349,
-        timestamp: "18m ago",
+        timestamp: "18 นาทีที่แล้ว",
         description:
-          "All about Brazil, suspendisse lobortis pharetra tempor. Cras eleifend ante sed arcu interdum, in bibendum enim ultricies. Integer rutrum quis risus at tempor.",
+          "ทริปบราซิลสุดเจ๋ง! บรรยากาศดีมากครับ ได้ลองไวน์ดีๆ เพลิดเพลินกับวิวทะเล อากาศดี คนดี 🍷🌴",
       },
       {
         name: "Brooke Shaden",
         image: "assets/images/shaden21.jpeg",
         pic: "assets/images/Brooke-Shaden.jpeg",
         id: 3,
-        timestamp: "45m ago",
+        timestamp: "45 นาทีที่แล้ว",
+        description: "ภาพถ่ายศิลปะชุดใหม่ เล่นกับแสงและเงา สร้างสรรค์อะไรใหม่ๆ ตลอด 📸✨",
       },
       {
         name: "Makazole Mapimpi",
@@ -35,17 +36,18 @@ const store = createStore({
         pic: "assets/images/makazole.png",
         id: 2,
         likes: 390,
-        timestamp: "1h ago",
+        timestamp: "1 ชั่วโมงที่แล้ว",
         description:
-          "Vestibulum cursus quis eget orci. Aenean faucibus faucibus.",
+          "ฝึกซ้อมหนักๆ เตรียมพร้อมสำหรับเกมใหม่ 🏉 มุ่งมั่นทุกวันเพื่อความสำเร็จ!",
       },
       {
         name: "Lewis Hamilton",
         slug: "jamaica",
         image: "assets/images/lewis-angela.jpg",
         pic: "assets/images/lewis.png",
-        timestamp: "3h ago",
+        timestamp: "3 ชั่วโมงที่แล้ว",
         id: 4,
+        description: "พักผ่อนที่จาไมก้า บรรยากาศชิลๆ ได้เวลาชาร์จพลังแล้ว 🇯🇲☀️",
       },
     ],
     stories: [
