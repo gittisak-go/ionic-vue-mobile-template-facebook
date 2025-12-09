@@ -237,19 +237,22 @@ npx netlify login
 npx netlify deploy --prod --dir=dist
 ```
 
-**วิธีที่ 2: GitHub Actions (Automatic)**
+**วิธีที่ 2: GitHub Actions (Automatic CI/CD)**
 
 Push code ขึ้น GitHub → Netlify จะ auto-deploy ผ่าน workflow `.github/workflows/netlify-deploy.yml`
 
-**ต้องตั้งค่า GitHub Secrets:**
-1. ไปที่ GitHub repo → **Settings** → **Secrets and variables** → **Actions**
-2. เพิ่ม secrets:
-   - `NETLIFY_AUTH_TOKEN` → ใช้ token จาก `npx netlify login`
-   - `NETLIFY_SITE_ID` → ใช้ ID จาก `npx netlify status` (Project Id)
+**ขั้นตอนการตั้งค่า GitHub Secrets:**
+1. ไปที่ repository บน GitHub
+2. คลิก **Settings** → **Secrets and variables** → **Actions**
+3. คลิก **New repository secret** และเพิ่ม:
+   - **Name:** `NETLIFY_AUTH_TOKEN`  
+     **Value:** Personal access token จาก [Netlify User Settings → Applications](https://app.netlify.com/user/applications)
+   - **Name:** `NETLIFY_SITE_ID`  
+     **Value:** Site ID จาก Netlify dashboard (ดูได้จาก Site settings → General → Site details)
 
-**Configuration files:**
-- `netlify.toml` — build command, redirects สำหรับ SPA routing
-- `.github/workflows/netlify-deploy.yml` — CI/CD workflow
+**ไฟล์ที่เกี่ยวข้อง:**
+- `netlify.toml` — กำหนด build command และ redirects สำหรับ SPA routing
+- `.github/workflows/netlify-deploy.yml` — GitHub Actions workflow สำหรับ automated deployment
 
 ---
 
