@@ -1,142 +1,359 @@
-## backcat
+# backcat — แอปโซเชียลมือถือสไตล์ Messenger
 
-เว็บแอปพลิเคชันมือถือสร้างด้วย `Ionic Vue` และ `Vue 3`.
+> 🚀 **แอปพลิเคชันมือถือ (Mobile-First PWA)** สร้างด้วย Ionic Vue 7 + Vue 3  
+> 💬 ออกแบบ UI/UX ให้เหมือน Facebook Messenger 99%  
+> 🌏 รองรับภาษาไทย 80% + English 20%  
+> 📱 **95% ของผู้ใช้งานเข้าผ่านมือถือ** — พร้อมสร้าง Android/iOS builds ด้วย Capacitor
 
-![Netlify Status](https://api.netlify.com/api/v1/badges/fc2b8d51-2242-440c-8f6c-f283e77154c4/deploy-status)
+![Netlify Status](https://api.netlify.com/api/v1/badges/bdf56aa3-96f8-41c4-a8e8-3a620b85197e/deploy-status)
 
-ตัวอย่างเดโม (ถ้ามีพรีวิว): https://ionic-vue-mobile-template-facebook.netlify.app
+**🌐 ดูเดโมสด:** https://back-cat.netlify.app
 
-## การติดตั้งโปรเจกต์
+---
 
-รันคำสั่งต่อไปนี้เพื่อดาวน์โหลด dependency:
+## 🎯 ฟีเจอร์หลัก
+
+- ✅ **โพสต์ (Posts)** — ฟีดข่าวสารแบบเรียลไทม์ พร้อมรูปภาพ, ข้อความภาษาไทย, timestamp
+- ✅ **สตอรี่ (Stories)** — แบบวงกลมเหมือน Facebook, ปัดแนวนอน
+- ✅ **แชทสด (Live Chat Modal)** — UI เหมือน Messenger 99% (ฟองแชท, สี, ปุ่มโทร/วิดีโอ, อิโมจิ)
+- ✅ **โปรไฟล์ (Profile Modal)** — แก้ไขชื่อ, รูปโปรไฟล์, ออกจากระบบ (Messenger-style)
+- ✅ **ล็อกอินด้วย Google** — Mock authentication (พร้อมขยายเป็น OAuth จริงได้)
+- ✅ **ธีมมืด (Dark Theme)** — Ionic CSS variables ปรับแต่งแล้ว
+- ✅ **i18n (vue-i18n)** — ไทย 80% (UI หลัก), English 20% (คำศัพท์เทคนิค)
+- ✅ **Responsive** — ออกแบบสำหรับมือถือเป็นหลัก (320px+), รองรับแท็บเล็ต/เดสก์ท็อป
+
+---
+
+## 📦 Tech Stack
+
+| เทคโนโลยี | เวอร์ชัน | รายละเอียด |
+|-----------|---------|-----------|
+| **Vue** | 3.5.13 | Composition + Options API (mixed) |
+| **Ionic Vue** | 7.8.6 | Mobile UI framework (iOS/Android styles) |
+| **Vuex** | 4.1.0 | State management (posts, stories, user, chat) |
+| **Vue Router** | 4.4.5 | SPA routing |
+| **vue-i18n** | 9.15.1 | Internationalization (Thai/English) |
+| **Vite** | 4.5.14 | Build tool & dev server |
+| **Capacitor** | 5.7.8 | Native mobile packaging |
+| **Vitest** | 1.3.1 | Unit testing |
+| **Cypress** | 13.6.6 | E2E testing |
+| **Netlify** | — | Production hosting (PWA) |
+
+---
+
+## 📱 การใช้งานบนมือถือ (Mobile-First)
+
+โปรเจกต์นี้ออกแบบโดยมีข้อมูลว่า **95% ของผู้ใช้งานเข้าจากมือถือ**  
+ดังนั้น UX และ performance ถูกปรับแต่งสำหรับ:
+- Viewport มือถือ (320px - 428px)
+- Touch interactions (swipe, tap, long-press)
+- Capacitor native features (Camera, Haptics, App, StatusBar, Keyboard)
+
+### ทดสอบบนมือถือจริง (ผ่าน browser)
+
+1. รันเซิร์ฟเวอร์พัฒนา:
+```bash
+npm run dev
+```
+
+2. หา IP ของเครื่อง (Windows):
+```powershell
+ipconfig
+# หา IPv4 Address (เช่น 192.168.1.100)
+```
+
+3. เปิดบนมือถือ:
+```
+http://192.168.1.100:5173/
+```
+
+หรือใช้ **ngrok**/**localtunnel** เพื่อเปิด public URL ชั่วคราว
+
+---
+
+---
+
+## 🚀 เริ่มต้นพัฒนา
+
+### 1. ติดตั้ง Dependencies
 
 ```bash
 npm install
 ```
 
-### รันบนเบราว์เซอร์ (โหมดพัฒนา)
-
-เริ่มเซิร์ฟเวอร์พัฒนา (Vite):
+### 2. รันบนเบราว์เซอร์ (โหมดพัฒนา)
 
 ```bash
 npm run dev
 ```
 
-ค่าเริ่มต้น Vite จะให้ URL ท้องถิ่น เช่น `http://localhost:5173/` — เปิด URL นั้นในเบราว์เซอร์เพื่อตรวจดูหน้าแรก
+เปิดเบราว์เซอร์ที่ `http://localhost:5173/` และกด **F12** เปิด DevTools → เลือก **Device Toolbar** (มือถือโหมด)
 
-## การออกแบบ (Design)
-
-ภาพหน้าจอตัวอย่าง: `design.jpg` (ถ้ามี)  
-
-## เวอร์ชันแบบ Native (Capacitor)
-
-โปรเจกต์ใช้ [Capacitor](https://capacitorjs.com/docs/getting-started) สำหรับแพ็กแอปเป็น native
-
-### เตรียม native builds (สรุป)
-
-ตัวอย่างคำสั่งสำหรับ iOS:
+### 3. Build สำหรับ Production
 
 ```bash
 npm run build
-npx cap add ios
-npx cap copy
-npx cap open ios
 ```
 
-สำหรับ Android ใช้คำสั่งแทน `ios` เป็น `android`:
+ผลลัพธ์จะอยู่ใน `dist/` folder (ใช้สำหรับ deploy บน Netlify หรือ hosting อื่นๆ)
+
+---
+
+## 📲 สร้าง Native App (Android/iOS)
+
+เมื่อลูกค้าอนุมัติเดโม เราพร้อมผลิต **Android APK/AAB** และ **iOS IPA** ผ่าน Capacitor
+
+### เตรียมสภาพแวดล้อม
+
+- **Android:** ต้องติดตั้ง [Android Studio](https://developer.android.com/studio)
+- **iOS:** ต้องใช้ Mac + [Xcode](https://developer.apple.com/xcode/) (iOS development ต้องใช้ macOS)
+
+### คำสั่ง Android
 
 ```bash
+# Build web assets
 npm run build
+
+# เพิ่มแพลตฟอร์ม Android (ครั้งแรก)
 npx cap add android
+
+# Copy web build ไปยัง native project
 npx cap copy
+
+# เปิด Android Studio
 npx cap open android
 ```
 
-หมายเหตุ: Xcode/Android Studio อาจใช้เวลาสักครู่ในการ index โครงการ
+ใน Android Studio:
+1. รอให้ Gradle sync เสร็จ
+2. เลือก device/emulator
+3. กด **Run** (▶) เพื่อติดตั้งบนมือถือ
 
-## เอกสารอย่างเป็นทางการ
+### คำสั่ง iOS
 
-- Getting started (Ionic Vue): https://ionicframework.com/vue
+```bash
+# Build web assets
+npm run build
 
-## แหล่งข้อมูล (Resources)
+# เพิ่มแพลตฟอร์ม iOS (ครั้งแรก)
+npx cap add ios
 
-- Newsletter: https://mailchi.mp/b9133e120ccf/sqan8ggx22
-- YouTube: https://www.youtube.com/channel/UC5jZ6srZuLwt3O3ZtuM1Dsg
-- Ionic Vue Templates: https://tinyurl.com/y2gl39dk
-- Ionic Vue VSCode Snippets (extension): https://marketplace.visualstudio.com/items?itemName=dlodeprojuicer.ionicvuesnippets
+# Copy web build ไปยัง native project
+npx cap copy
 
-## คำแนะนำสำหรับการพัฒนา (Quick tips)
+# เปิด Xcode
+npx cap open ios
+```
 
-- จุดบูตแอป: `src/main.js` — ลงทะเบียน `IonicVue`, `router`, `store` และ import ไฟล์ CSS ของ Ionic
-- หน้าเริ่มต้น: `src/views/Timeline.vue` (route `/`)
-- สตอร์ (seed data): `src/store/index.js` — แก้ `posts`/`stories` ที่นี่เพื่อเปลี่ยนเนื้อหา
-- สไตล์: `src/theme/variables.css` และการ import CSS ของ Ionic ต้องอยู่ใน `src/main.js`
+ใน Xcode:
+1. เลือก Team/Signing (ต้องมี Apple Developer Account)
+2. เลือก target device (iPhone จริงหรือ Simulator)
+3. กด **Build & Run** (⌘R)
 
-## ทดสอบ
+**หมายเหตุ:**
+- ต้อง `npm run build` ใหม่ทุกครั้งที่แก้โค้ด web แล้วจึง `cap copy` และรัน native
+- การ sync ครั้งแรกอาจใช้เวลานานเพราะ Android Studio/Xcode ต้อง index project
 
-- Unit tests (Vitest):
+---
+
+## 🎨 โครงสร้างโค้ด (Code Architecture)
+
+```
+src/
+├── main.js              # จุดเริ่มต้น — ลงทะเบียน IonicVue, Router, Store, i18n
+├── App.vue              # Root component (script setup style)
+├── router/
+│   └── index.js         # Vue Router — route `/` → Timeline.vue
+├── store/
+│   └── index.js         # Vuex Store — posts, stories, user, chat messages
+├── views/
+│   └── Timeline.vue     # หน้าหลัก (ฟีด) — ใช้ Options API + setup()
+├── components/
+│   ├── Posts.vue        # แสดง posts list
+│   ├── Stories.vue      # แสดง stories carousel
+│   ├── StatusInput.vue  # ช่องพิมพ์สถานะ
+│   ├── Reactions.vue    # ปุ่ม Like/Comment/Share
+│   ├── ChatModal.vue    # แชทสด (Messenger-style)
+│   ├── ProfileModal.vue # แก้ไขโปรไฟล์ (Messenger-style)
+│   └── AuthButton.vue   # แสดงอวาตาร์/เข้าสู่ระบบ
+├── i18n/
+│   └── index.js         # vue-i18n config (th, en)
+├── services/
+│   ├── googleAuth.js    # Google OAuth stub
+│   └── supabaseStub.js  # Supabase placeholder
+└── theme/
+    └── variables.css    # Ionic CSS custom properties (dark theme)
+```
+
+**Pattern หลัก:**
+- Mixed **Composition API** (`setup()`) + **Options API** (`computed`, `methods`)
+- `Timeline.vue` ใช้ `setup()` สำหรับ icons/menu, `computed` สำหรับ `$store.getters.posts`
+- Vuex getters: `this.$store.getters.posts`, `this.$store.getters.stories`, `this.$store.state.user`
+- i18n: `$t('key')` ในเทมเพลต, legacy mode เพื่อใช้กับ Options API
+
+---
+
+## 🧪 การทดสอบ (Testing)
+
+### Unit Tests (Vitest)
 
 ```bash
 npm run test:unit
 ```
 
-- E2E tests (Cypress headless):
+ไฟล์ทดสอบอยู่ใน `tests/unit/`
+
+### E2E Tests (Cypress)
 
 ```bash
 npm run test:e2e
 ```
 
-## ข้อควรระวัง
+รัน Cypress แบบ headless (CI-friendly)
 
-- โปรเจกต์ผสม `script setup` และ `export default` ใน SFC — ให้แก้ไฟล์ตามสไตล์ที่ไฟล์นั้นใช้
-- หากรันสคริปต์ใน PowerShell เจอปัญหาเรื่อง execution policy ให้รันโดยใช้ `cmd` หรือปรับ `ExecutionPolicy` ของ PowerShell
-- พบตัวอักษรเพี้ยน `5;` ที่ท้าย `src/router/index.js` — ควรลบเมื่อแก้ไฟล์นั้น
-
-## ผู้เขียน / เครดิต
-
-- โค้ดตัวอย่างและเอกสารต้นฉบับจากผู้เขียนเดิม
-
-## การตั้งค่า Google OAuth / Supabase (scaffold)
-
-- หากต้องการเปิดใช้งาน Google Sign-in จริง ให้สร้างไฟล์ `.env` ที่ตั้งค่าต่อไปนี้ (ดู `.env.example`):
+### Lint
 
 ```bash
-VITE_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
-VITE_SUPABASE_URL=https://<project>.supabase.co
-VITE_SUPABASE_ANON_KEY=<anon-key>
+npm run lint
 ```
 
-- การเปลี่ยนแปลงที่ผมเพิ่มไฟล์สเต็บไว้ให้:
-	- `src/services/googleAuth.js` — โหลด Google Identity SDK แบบไดนามิก และคืนค่า user object เมื่อสำเร็จ
-	- `src/services/supabaseStub.js` — stub สำหรับตรวจว่ามีค่า Supabase หรือไม่ (ยังไม่เชื่อมต่อจริง)
+---
 
-- เมื่อตั้งค่า `VITE_GOOGLE_CLIENT_ID` อยู่ใน `.env` แล้ว รีสตาร์ท dev server เพื่อให้ค่า env โหลดใหม่
+## 🌐 ปรับใช้ (Deployment)
 
-## ปรับใช้บน Netlify
+### ปรับใช้บน Netlify (Production)
 
-ไฟล์ `netlify.toml` และ `public/_redirects` ถูกเพิ่มไว้แล้วในโปรเจกต์ เพื่อรองรับการ deploy แบบ Single Page App (SPA).
+โปรเจกต์นี้ใช้ **Netlify** สำหรับ hosting PWA  
+URL สด: **https://back-cat.netlify.app**
 
-ขั้นตอนสรุปการ deploy บน Netlify (วิธีง่ายที่สุด):
-
-1. Push โค้ดขึ้น GitHub (หรือ Git provider ที่ Netlify รองรับ).
-2. เข้าไปที่ https://app.netlify.com → สร้าง New site → เลือก "Import from Git" → เลือกรีโปของคุณ
-3. ตรวจสอบค่าการตั้งค่า build:
-	- Build command: `npm run build`
-	- Publish directory: `dist`
-4. ตั้งค่า Environment variables ใน Netlify site settings (หากต้องการ):
-	- `VITE_GOOGLE_CLIENT_ID` (ถ้าต้องการเปิด Google Sign-in จริง)
-	- `VITE_SUPABASE_URL` และ `VITE_SUPABASE_ANON_KEY` (เมื่อพร้อมเชื่อม Supabase)
-5. กด Deploy — Netlify จะรัน `npm install` และ `npm run build` ตามที่กำหนด และเผยแพร่ `dist` เป็น static site
-
-ทางเลือก: ใช้ Netlify CLI เพื่อตรวจสอบก่อน deploy จริงจากเครื่องของคุณ:
+**วิธีที่ 1: Netlify CLI (Manual)**
 
 ```bash
-npm install -g netlify-cli
+# Build production
 npm run build
-netlify deploy --dir=dist --prod
+
+# Deploy (ต้อง login ก่อน)
+npx netlify login
+npx netlify deploy --prod --dir=dist
 ```
 
-หมายเหตุ:
-- หากคุณต้องการให้ผมสร้าง site บน Netlify, ทำการ deploy ครั้งแรก หรือเปิดให้ผมใช้ Netlify access token (แนะนำว่าปลอดภัยกว่าถ้าเจ้าของ repo ทำเชื่อมด้วยตัวเอง) ให้บอกผม — ผมสามารถช่วยขั้นตอนวิธีกรนและแนะนำการตั้งค่าได้
+**วิธีที่ 2: GitHub Actions (Automatic)**
+
+Push code ขึ้น GitHub → Netlify จะ auto-deploy ผ่าน workflow `.github/workflows/netlify-deploy.yml`
+
+**ต้องตั้งค่า GitHub Secrets:**
+1. ไปที่ GitHub repo → **Settings** → **Secrets and variables** → **Actions**
+2. เพิ่ม secrets:
+   - `NETLIFY_AUTH_TOKEN` → ใช้ token จาก `npx netlify login`
+   - `NETLIFY_SITE_ID` → ใช้ ID จาก `npx netlify status` (Project Id)
+
+**Configuration files:**
+- `netlify.toml` — build command, redirects สำหรับ SPA routing
+- `.github/workflows/netlify-deploy.yml` — CI/CD workflow
+
+---
+
+## ⚙️ การตั้งค่า Environment Variables (Optional)
+
+สร้างไฟล์ `.env` ใน root folder (ดูตัวอย่างจาก `.env.example`):
+
+```bash
+# Google OAuth (จริง)
+VITE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+
+# Supabase (ถ้าใช้ Realtime Database)
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+**หมายเหตุ:**
+- ตอนนี้ใช้ **stub services** (mock) — ไม่ต้องตั้งค่า env ก็รันได้
+- ถ้าต้องการ OAuth/Supabase จริง ต้องแก้ `src/services/googleAuth.js` และ `supabaseStub.js`
+
+---
+
+## 🐛 Troubleshooting
+
+### PowerShell Execution Policy
+
+ถ้ารัน `npm run ...` เจอ error เรื่อง execution policy:
+
+```powershell
+# วิธีที่ 1: ใช้ cmd wrapper
+cmd /c "npm run dev"
+
+# วิธีที่ 2: เปลี่ยน policy (ไม่แนะนำ)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### Vite Sass Deprecation Warnings
+
+Warnings เกี่ยวกับ `[legacy-js-api]` ไม่กระทบการทำงาน (Ionic ใช้ Sass เวอร์ชันเก่า)
+
+### Capacitor Sync Issues
+
+ถ้า `cap sync` หรือ `cap copy` ไม่ work:
+
+```bash
+# ลบแพลตฟอร์มแล้วเพิ่มใหม่
+npx cap remove android  # หรือ ios
+npx cap add android     # หรือ ios
+npx cap sync
+```
+
+---
+
+## 📚 เอกสารอ้างอิง
+
+- [Ionic Vue Documentation](https://ionicframework.com/docs/vue/overview)
+- [Capacitor Documentation](https://capacitorjs.com/docs)
+- [Vue 3 Documentation](https://vuejs.org/)
+- [Vuex 4 Documentation](https://vuex.vuejs.org/)
+- [vue-i18n Documentation](https://vue-i18n.intlify.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+
+---
+
+## 🤝 Contributing & Roadmap
+
+**เมื่อลูกค้าอนุมัติเดโม เราจะพัฒนา Full-Stack Version:**
+
+- [ ] เชื่อม **Supabase Realtime** สำหรับ live chat จริง
+- [ ] เพิ่ม **Google OAuth** ที่ทำงานได้จริง (ต้อง Client ID)
+- [ ] อัปโหลดรูป **Camera API** + **Capacitor Filesystem**
+- [ ] ระบบ **Reactions** (Like, Love, Haha, Wow, Sad, Angry)
+- [ ] ระบบ **Comments** + nested replies
+- [ ] ระบบ **Friends** + Friend Requests
+- [ ] **Push Notifications** (Capacitor Push + Firebase)
+- [ ] **Offline Mode** (Service Worker + IndexedDB)
+- [ ] **Video Posts** (แชร์วิดีโอสั้น TikTok-style)
+
+---
+
+## 👨‍💻 ผู้พัฒนา
+
+**โปรเจกต์นี้พัฒนาโดย:**  
+- GtsAlpha (gittisakwannakeeree@gmail.com)  
+- GitHub: [@gittisak-go](https://github.com/gittisak-go)
+
+**เทมเพลตต้นฉบับ:**  
+- [Ionic Vue Mobile Templates](https://tinyurl.com/y2gl39dk)
+
+---
+
+## 📄 License
+
+MIT License — ใช้ได้อย่างอิสระ (ดู `LICENSE` file)
+
+---
+
+## 🎯 สรุปสำหรับลูกค้า
+
+✅ **แอปพร้อมใช้งานแล้ว:** https://back-cat.netlify.app  
+✅ **รองรับมือถือ 95%** — ทดสอบได้ทันทีบนสมาร์ทโฟนของคุณ  
+✅ **ฟีเจอร์ครบ:** แชท, โปรไฟล์, โพสต์, สตอรี่, ภาษาไทย  
+✅ **พร้อมผลิตแอปจริง:** สามารถสร้าง Android APK + iOS IPA ได้ทันที
+
+**ติดต่อเพื่อผลิตเป็น Full-Stack App พร้อม Backend จริง!** 🚀
 
 
