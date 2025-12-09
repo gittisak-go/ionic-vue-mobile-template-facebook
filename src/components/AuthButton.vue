@@ -1,15 +1,14 @@
 <template>
   <div class="auth">
-    <ion-button v-if="!user" @click="signIn">
+    <ion-button v-if="!user" @click="signIn" fill="clear" class="sign-in-btn">
       <ion-icon slot="start" :icon="logoGoogle"></ion-icon>
       {{ $t('auth.sign_in_google') }}
     </ion-button>
 
-    <div v-else class="user">
-      <img :src="user.pic" alt="avatar" class="avatar" />
-      <span class="name">{{ user.name }}</span>
-      <ion-button size="small" @click="openProfile">{{ $t('auth.edit_profile') }}</ion-button>
-      <ion-button size="small" fill="clear" @click="signOut">{{ $t('auth.sign_out') }}</ion-button>
+    <div v-else class="user-profile" @click="openProfile">
+      <ion-avatar class="user-avatar">
+        <img :src="user.pic" alt="avatar" />
+      </ion-avatar>
     </div>
 
     <ProfileModal ref="profileModal" @save="onProfileSave" />
@@ -17,14 +16,14 @@
 </template>
 
 <script>
-import { IonButton, IonIcon } from '@ionic/vue';
+import { IonButton, IonIcon, IonAvatar } from '@ionic/vue';
 import { logoGoogle } from 'ionicons/icons';
 import { mapGetters } from 'vuex';
 import ProfileModal from './ProfileModal.vue';
 import { signInWithGoogle as googleSignIn } from '../services/googleAuth';
 
 export default {
-  components: { IonButton, IonIcon, ProfileModal },
+  components: { IonButton, IonIcon, IonAvatar, ProfileModal },
   computed: {
     ...mapGetters(['user']),
   },
@@ -61,7 +60,25 @@ export default {
 </script>
 
 <style scoped>
-.auth { display:flex; align-items:center; gap:8px }
-.avatar { width:32px; height:32px; border-radius:50%; }
-.name { color:#fff; margin-left:6px; font-weight:600; }
+.auth { 
+  display: flex; 
+  align-items: center; 
+}
+
+.sign-in-btn {
+  --color: #fff;
+  font-size: 14px;
+}
+
+.user-profile {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #0084ff;
+}
 </style>
