@@ -16,7 +16,11 @@
         </ion-buttons>
       </ion-toolbar>
       <div class="menu">
-        <ion-button v-for="(i, idx) in menu" :key="idx">
+        <ion-button 
+          v-for="(i, idx) in menu" 
+          :key="idx"
+          @click="handleMenuClick(idx)"
+        >
           <ion-icon :icon="i"></ion-icon>
         </ion-button>
       </div>
@@ -27,6 +31,7 @@
       <!-- <Stories :data="stories" /> -->
       <Posts :data="posts" />
       <ChatModal ref="chatModal" />
+      <MenuModal ref="menuModal" />
     </ion-content>
   </ion-page>
 </template>
@@ -37,6 +42,7 @@ import StatusInput from "../components/StatusInput.vue";
 import Posts from "../components/Posts.vue";
 import AuthButton from "../components/AuthButton.vue";
 import ChatModal from "../components/ChatModal.vue";
+import MenuModal from "../components/MenuModal.vue";
 
 import {
   IonPage,
@@ -74,6 +80,7 @@ export default {
     Posts,
     AuthButton,
     ChatModal,
+    MenuModal,
   },
   setup() {
     const menu = [
@@ -100,7 +107,21 @@ export default {
   },
   methods: {
     openChat() {
-      this.$refs.chatModal.open();
+      if (this.$refs.chatModal && typeof this.$refs.chatModal.open === 'function') {
+        this.$refs.chatModal.open();
+      }
+    },
+    handleMenuClick(index) {
+      // index 5 คือปุ่มเมนู 3 ขีด (menuOutline)
+      if (index === 5) {
+        this.openMenu();
+      }
+      // เพิ่ม handlers อื่นๆ ตามต้องการ
+    },
+    openMenu() {
+      if (this.$refs.menuModal && typeof this.$refs.menuModal.open === 'function') {
+        this.$refs.menuModal.open();
+      }
     },
   },
 };
@@ -116,12 +137,14 @@ ion-header {
 }
 
 .logo {
-  padding: 10px 0 0 10px;
-  font-weight: bolder;
-  font-size: 26px;
+  padding: 0;
+  margin: 8px 0 0 16px;
+  font-weight: bold;
+  font-size: 22px;
   display: inline-block;
   white-space: nowrap;
   letter-spacing: normal;
+  line-height: 1.2;
 }
 
 .menu {

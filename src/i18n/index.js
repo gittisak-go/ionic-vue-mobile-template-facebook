@@ -2,7 +2,7 @@ import { createI18n } from 'vue-i18n';
 
 const messages = {
   th: {
-    brand: { logo: 'backcat' },
+    brand: { logo: 'Backcat' },
     status: {
       placeholder: 'คิดอะไรอยู่หรือเปล่า?',
       live: 'ถ่ายทอดสด',
@@ -15,6 +15,7 @@ const messages = {
       share: 'แชร์',
     },
     auth: {
+      sign_in: 'เข้าสู่ระบบ',
       sign_in_google: 'Sign in with Google',
       sign_out: 'Sign out',
       edit_profile: 'แก้ไขโปรไฟล์',
@@ -30,7 +31,7 @@ const messages = {
     },
   },
   en: {
-    brand: { logo: 'backcat' },
+    brand: { logo: 'Backcat' },
     status: {
       placeholder: "What's on your mind?",
       live: 'Live',
@@ -43,6 +44,7 @@ const messages = {
       share: 'Share',
     },
     auth: {
+      sign_in: 'Sign in',
       sign_in_google: 'Sign in with Google',
       sign_out: 'Sign out',
       edit_profile: 'Edit profile',

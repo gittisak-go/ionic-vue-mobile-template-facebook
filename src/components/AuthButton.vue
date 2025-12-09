@@ -1,8 +1,7 @@
 <template>
   <div class="auth">
-    <ion-button v-if="!user" @click="signIn" fill="clear" class="sign-in-btn">
-      <ion-icon slot="start" :icon="logoGoogle"></ion-icon>
-      {{ $t('auth.sign_in_google') }}
+    <ion-button v-if="!user" @click="signIn" class="sign-in-btn">
+      {{ $t('auth.sign_in') }}
     </ion-button>
 
     <div v-else class="user-profile" @click="openProfile">
@@ -16,19 +15,15 @@
 </template>
 
 <script>
-import { IonButton, IonIcon, IonAvatar } from '@ionic/vue';
-import { logoGoogle } from 'ionicons/icons';
+import { IonButton, IonAvatar } from '@ionic/vue';
 import { mapGetters } from 'vuex';
 import ProfileModal from './ProfileModal.vue';
 import { signInWithGoogle as googleSignIn } from '../services/googleAuth';
 
 export default {
-  components: { IonButton, IonIcon, IonAvatar, ProfileModal },
+  components: { IonButton, IonAvatar, ProfileModal },
   computed: {
     ...mapGetters(['user']),
-  },
-  setup() {
-    return { logoGoogle };
   },
   methods: {
     async signIn() {
@@ -66,8 +61,19 @@ export default {
 }
 
 .sign-in-btn {
+  --background: #0084ff;
   --color: #fff;
-  font-size: 14px;
+  --border-radius: 16px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: none;
+  height: 28px;
+  min-width: auto;
+  margin-right: 8px;
 }
 
 .user-profile {
